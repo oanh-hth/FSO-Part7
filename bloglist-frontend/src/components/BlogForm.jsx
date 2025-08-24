@@ -14,31 +14,40 @@ const BlogForm = ({ createBlog }) => {
   };
 
   return (
-    <form onSubmit={addBlog}>
-      <div>
-        <label htmlFor="title">Title</label>
+    <form onSubmit={addBlog} className="w-50">
+      <div className="mb-3">
+        <label className="form-label" htmlFor="title">
+          Title
+        </label>
         <input
           id="title"
           data-testid="title"
           value={title}
           onChange={e => setTitle(e.target.value)}
           placeholder="title"
+          className="form-control"
         />
       </div>
-      <div>
-        <label htmlFor="author">Author</label>
+      <div className="mb-3">
+        <label className="form-label" htmlFor="author">
+          Author
+        </label>
         <input
           id="author"
+          className="form-control"
           data-testid="author"
           value={author}
           onChange={e => setAuthor(e.target.value)}
           placeholder="author"
         />
       </div>
-      <div>
-        <label htmlFor="url">Url</label>
+      <div className="mb-3">
+        <label className="form-label" htmlFor="url">
+          Url
+        </label>
         <input
           id="url"
+          className="form-control"
           data-testid="url"
           value={url}
           onChange={e => setUrl(e.target.value)}
@@ -46,7 +55,9 @@ const BlogForm = ({ createBlog }) => {
         />
       </div>
 
-      <button type="submit">create</button>
+      <button className="btn btn-primary" type="submit">
+        create
+      </button>
     </form>
   );
 };

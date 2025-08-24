@@ -7,11 +7,13 @@ const Users = ({ users }) => {
   return (
     <>
       <h3>Users</h3>
-      <table>
-        <tr>
-          <th></th>
-          <th>blogs created</th>
-        </tr>
+      <table className="table w-50 mt-5 border">
+        <thead>
+          <tr>
+            <th></th>
+            <th>blogs created</th>
+          </tr>
+        </thead>
         <tbody>
           {users.map(user => (
             <tr key={user.id}>

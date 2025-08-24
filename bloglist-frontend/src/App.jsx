@@ -20,6 +20,10 @@ import { Link, Route, Routes, useMatch, useNavigate } from "react-router-dom";
 import Users from "./components/Users";
 import User from "./components/User";
 import BlogList from "./components/BlogList";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import Button from "react-bootstrap/Button";
 
 const App = () => {
   const [username, setUsername] = useState("");
@@ -128,42 +132,69 @@ const App = () => {
 
   return (
     <div>
-      <div>
-        <Link to="/blogs">blogs</Link>
-        <Link to="/users">users</Link>
-        <span>
-          {user.username} logged in{" "}
-          <button onClick={handleLogout}>logout</button>
-        </span>
-      </div>
-      <h2>Blog App</h2>
+      <Navbar expand="lg" className="bg-body-tertiary">
+        <Container>
+          <Navbar.Brand className="text-primary">Blog App</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link>
+                <Link to="/blogs">Blogs</Link>
+              </Nav.Link>
+              <Nav.Link>
+                <Link to="/users">Users</Link>
+              </Nav.Link>
+            </Nav>
+            <Navbar.Text>
+              {user.username} logged in{" "}
+              <Button onClick={handleLogout}>Logout</Button>
+            </Navbar.Text>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
 
       <Routes>
-        <Route path="/users" element={<Users users={users} />} />
-        <Route path="/users/:id" element={<User user={matchUser} />} />
+        <Route
+          path="/users"
+          element={
+            <Container className="mt-3">
+              <Users users={users} />
+            </Container>
+          }
+        />
+        <Route
+          path="/users/:id"
+          element={
+            <Container className="mt-3">
+              <User user={matchUser} />
+            </Container>
+          }
+        />
         <Route
           path="/blogs/:id"
           element={
-            <Blog
-              blog={matchBlogObject}
-              onLike={handleLike}
-              onDelete={handleDeleteBlog}
-              user={user.username}
-              onComment={handleCommentBlog}
-            />
+            <Container className="mt-3">
+              <Blog
+                blog={matchBlogObject}
+                onLike={handleLike}
+                onDelete={handleDeleteBlog}
+                user={user.username}
+                onComment={handleCommentBlog}
+              />
+            </Container>
           }
         />
         <Route
           path="/blogs"
           element={
-            <>
+            <Container className="mt-5">
               <Notification {...notification} />
 
               <Togglable buttonLabel="create new blog" ref={blogFormRef}>
                 <BlogForm createBlog={addNewBlog} />
               </Togglable>
               <BlogList blogs={blogs} />
-            </>
+            </Container>
           }
         />
       </Routes>

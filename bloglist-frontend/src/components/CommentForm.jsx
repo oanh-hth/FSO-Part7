@@ -9,13 +9,16 @@ const CommentForm = ({ blog, onComment }) => {
   };
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="comment"
-        value={comment}
-        onChange={e => setComment(e.target.value)}
-      />
-      <button>add comment</button>
+      <div className="d-flex align-items-center w-50">
+        <input
+          type="text"
+          className="form-control me-3"
+          name="comment"
+          value={comment}
+          onChange={e => setComment(e.target.value)}
+        />
+        <button className="btn  btn-outline-primary">add</button>
+      </div>
     </form>
   );
 };
